@@ -27,6 +27,10 @@ var (
 )
 
 func Enqueue(j Job, args map[string]string) {
+    if jobsmap[j.Name()] == nil {
+        fmt.Printf("NOT REGISTERED\n")
+        Register(j)
+    }
     mj := marshalledjob { Name: j.Name(), Args: args}
     b, err := json.Marshal(mj)
     if err != nil {
